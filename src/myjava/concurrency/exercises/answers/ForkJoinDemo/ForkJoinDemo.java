@@ -1,7 +1,6 @@
 package myjava.concurrency.exercises.answers.ForkJoinDemo;
 
 import java.util.Arrays;
-
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
@@ -83,7 +82,7 @@ public class ForkJoinDemo
       System.out.println();
 
       startTime = System.currentTimeMillis();
-      Arrays.parallelSort(array3);
+        Arrays.sort(array3);
       System.out.printf("Arrays.parallelSort() completed in %d millis%n", 
                         System.currentTimeMillis()-startTime);
       for (int i = 0; i < array3.length; i++)
