@@ -113,8 +113,7 @@ public class NumberToWords {
 		if(numberWords.containsKey(int1))
 		{
 			sb.append(numberWords.get(int1)+" ");
-			if(digitPlaces.containsKey(i))
-				sb.append(digitPlaces.get(i) + " ");
+			sb.append(digitPlaces.get(i) + " ");
 		}
 	}
 }
