@@ -40,6 +40,13 @@ public class NumberToWordsTest {
 		String wordFromNumber = new NumberToWords().getWordFromNumber(number);
 		assertEquals(inWords, wordFromNumber.trim());
 	}
+	
+	@Test
+	@Parameters({"1000000,Ten Lakh"})
+	public void testName4(int number, String inWords) throws Exception {
+		String wordFromNumber = new NumberToWords().getWordFromNumber(number);
+		assertEquals(inWords, wordFromNumber.trim());
+	}
 }
 
 

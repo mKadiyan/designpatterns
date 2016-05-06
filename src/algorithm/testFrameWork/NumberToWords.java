@@ -63,47 +63,59 @@ public class NumberToWords {
 				
 				if(i == 7 || i== 5 || i==2)
 				{
-					String valueOf1 = String.valueOf(valueOf.charAt(length - i));
-					String valueOf2 = String.valueOf(valueOf.charAt(length - i+ 1));
-					int num = Integer.valueOf(valueOf1+valueOf2);
-					if(numberWords.containsKey(num))
-					{
-						sb.append(numberWords.get(num) +" ");
-					}
-					else
-					{
-						Integer int1 = Integer.valueOf(valueOf1);
-						Integer int2 = Integer.valueOf(valueOf2);
-						if(numberWords.containsKey(int1))
-						{
-							sb.append(numberWords.get(int1*10)+" ");
-						}
-						if(numberWords.containsKey(int2))
-						{
-							sb.append(numberWords.get(int2)+" ");
-						}
-					}
-					if(digitPlaces.containsKey(i-1))
-					sb.append(digitPlaces.get(i-1) + " ");
+					processNumberWithTensPlaces(valueOf, i, length, sb);//eg  21 thousand .. , 21 lacs... 
 					i = i-2;
 					
 				}
 				else
 				{
-					String valueOf2 = String.valueOf(valueOf.charAt(length - i));
-					Integer int1 = Integer.valueOf(valueOf2);
-					if(numberWords.containsKey(int1))
-					{
-						sb.append(numberWords.get(int1)+" ");
-						if(digitPlaces.containsKey(i))
-							sb.append(digitPlaces.get(i) + " ");
-					}
+					processNumberWithOnesPlaces(valueOf, i, length, sb);//2 thousand.. 2 lacs...
 					i = i-1;
 				}
 			}
 		}
 		
 		return sb.toString();
+	}
+
+	private void processNumberWithTensPlaces(String valueOf, int i, int length, StringBuilder sb) {
+		String valueOf1 = String.valueOf(valueOf.charAt(length - i));
+		String valueOf2 = String.valueOf(valueOf.charAt(length - i+ 1));
+		int num = Integer.valueOf(valueOf1+valueOf2);
+		boolean flag = false;
+		if(numberWords.containsKey(num))
+		{
+			sb.append(numberWords.get(num) +" ");
+			flag = true;
+		}
+		else
+		{
+			Integer int1 = Integer.valueOf(valueOf1);
+			Integer int2 = Integer.valueOf(valueOf2);
+			if(numberWords.containsKey(int1))
+			{
+				sb.append(numberWords.get(int1*10)+" ");
+				flag = true;
+			}
+			if(numberWords.containsKey(int2))
+			{
+				sb.append(numberWords.get(int2)+" ");
+				flag = true;
+			}
+		}
+		if(flag  && digitPlaces.containsKey(i-1))
+			sb.append(digitPlaces.get(i-1) + " ");
+	}
+	
+	private void processNumberWithOnesPlaces(String valueOf, int i, int length, StringBuilder sb) {
+		String valueOf2 = String.valueOf(valueOf.charAt(length - i));
+		Integer int1 = Integer.valueOf(valueOf2);
+		if(numberWords.containsKey(int1))
+		{
+			sb.append(numberWords.get(int1)+" ");
+			if(digitPlaces.containsKey(i))
+				sb.append(digitPlaces.get(i) + " ");
+		}
 	}
 }
 
